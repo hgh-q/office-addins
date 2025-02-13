@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-
+const path = require("path");
 const devCerts = require("office-addin-dev-certs");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -18,23 +18,25 @@ module.exports = async (env, options) => {
     devtool: "source-map",
     entry: {
       polyfill: ["core-js/stable", "regenerator-runtime/runtime"],
-      taskpane: ["./src/taskpane/taskpane.js", "./src/taskpane/taskpane.html"],
+      taskpane: ["./src/main.js"], // 入口改为 React 组件
       commands: "./src/commands/commands.js",
-    },
+    },  
     output: {
-      clean: true,
+      path: path.resolve(__dirname, "dist"),
+      filename: "[name].bundle.js",
     },
+    // output: {
+    //   clean: true,
+    // },
     resolve: {
-      extensions: [".html", ".js"],
+      extensions: [".html", ".js", '.jsx'],
     },
     module: {
       rules: [
         {
-          test: /\.js$/,
+          test: /\.(js|jsx)$/, // 支持 JSX
           exclude: /node_modules/,
-          use: {
-            loader: "babel-loader",
-          },
+          use: { loader: "babel-loader", options: { presets: ["@babel/preset-env", "@babel/preset-react"] } },
         },
         {
           test: /\.html$/,
@@ -48,12 +50,16 @@ module.exports = async (env, options) => {
             filename: "assets/[name][ext][query]",
           },
         },
+        {
+          test: /\.css$/, // 匹配 CSS 文件
+          use: ['style-loader', 'css-loader'], // 使用 style-loader 和 css-loader
+        },
       ],
     },
     plugins: [
       new HtmlWebpackPlugin({
-        filename: "taskpane.html",
-        template: "./src/taskpane/taskpane.html",
+        template: "./public/index.html",
+        filename: "index.html",
         chunks: ["polyfill", "taskpane"],
       }),
       new CopyWebpackPlugin({
@@ -90,6 +96,8 @@ module.exports = async (env, options) => {
         options: env.WEBPACK_BUILD || options.https !== undefined ? options.https : await getHttpsOptions(),
       },
       port: process.env.npm_package_config_dev_server_port || 3000,
+      hot: true, // 启用 React 组件热重载
+      historyApiFallback: true, // 让 React Router 兼容
     },
   };
 
