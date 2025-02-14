@@ -17,16 +17,20 @@ module.exports = async (env, options) => {
   const config = {
     devtool: "source-map",
     entry: {
+      // polyfill: ["@stardazed/streams-polyfill", "core-js/stable", "regenerator-runtime/runtime"],
       polyfill: ["core-js/stable", "regenerator-runtime/runtime"],
       taskpane: ["./src/main.js"], // 入口改为 React 组件
       commands: "./src/commands/commands.js",
-    },  
+    },
     output: {
       path: path.resolve(__dirname, "dist"),
       filename: "[name].bundle.js",
+      // filename: '[name].js',  // 只使用源文件名
     },
-    // output: {
-    //   clean: true,
+    // optimization: {
+    //   splitChunks: {
+    //     chunks: 'none',
+    //   },
     // },
     resolve: {
       extensions: [".html", ".js", '.jsx'],
@@ -52,6 +56,7 @@ module.exports = async (env, options) => {
         },
         {
           test: /\.css$/, // 匹配 CSS 文件
+          exclude: /\.module\.css$/,
           use: ['style-loader', 'css-loader'], // 使用 style-loader 和 css-loader
         },
       ],

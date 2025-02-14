@@ -23,8 +23,6 @@
   <AppDomains>
     <AppDomain>https://www.contoso.com</AppDomain>
     <AppDomain>https://localhost:3000</AppDomain>
-    <AppDomain>https://localhost:5000</AppDomain>
-    <AppDomain>http://127.0.0.1:5000</AppDomain>
     <AppDomain>https://api.siliconflow.cn</AppDomain>
   </AppDomains>
   <!-- 表明该 Add-in 主要是为 Workbook 类型的主机应用（即 Excel）设计的。 -->
@@ -72,7 +70,7 @@
               </Group>
             </OfficeTab>
             <!-- 确保这个选项卡是作为额外选项卡显示 -->
-            <!-- <CustomTab id="zoneOfficeAI">
+            <CustomTab id="zoneOfficeAI">
               <Group id="ZoneAI.Group1">
                 <Label resid="ZoneAI.Group1Label"/>
                 <Icon>
@@ -98,7 +96,7 @@
                 </Control>
               </Group>
               <Label resid="ZoneAI.CustomTabLabel" />
-            </CustomTab> -->
+            </CustomTab>
           </ExtensionPoint>
         </DesktopFormFactor>
       </Host>
