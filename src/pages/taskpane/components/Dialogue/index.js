@@ -40,15 +40,30 @@ import "./index.css"
 //   align-self: flex-start;
 // `;
 
-const ChatComponent = ({ messages }) => {
+const ChatComponent = ({ messages, AIResult, loading, setUserVerify }) => {
   console.log("messages：", messages)
+  const lastMessage = messages[messages.length - 1]
   return (
-    
+
     <div className={"container"}>
       <div className={"message-list"}>
-        {messages.map((msg, index) =>{
-          return <div className={msg.role === 'user' ? "user-message" : "bot-message"} key={index}>{msg.content}</div>;
+        {messages.map((msg, index) => {
+          return <div className={"message-container"}>
+            <div className={`message ${msg.role === 'user' ? "user-message" : "bot-message"}`} key={index}>{msg?.text || msg.content}</div>
+          </div>;
         })}
+        {
+          !loading && lastMessage.role === "assistant" && AIResult!=="" && [
+            <div className={"message-container"}>
+              <div className={"user-verify message"}>
+                <div className={"content"}>{`是否将结果："${AIResult}" 插入到选中区域`}</div>
+                <div className={"btn-list"}>
+                  <button onClick={() => setUserVerify(1)}>确认</button>
+                  <button onClick={() => setUserVerify(0)}>取消</button>
+                </div>
+              </div>
+            </div>]
+        }
       </div>
     </div>
     // <ContainerCss>

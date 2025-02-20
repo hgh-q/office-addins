@@ -21,11 +21,11 @@
   <SupportUrl DefaultValue="https://www.contoso.com/help"/>
   <!-- 指定了允许访问该 Office Add-in 的域（URL）。它用于限制 Add-in 只能从指定的域加载资源，这样可以提高安全性，确保 Add-in 不会从不受信任的来源加载内容。 -->
   <AppDomains>
-    <AppDomain>https://www.contoso.com</AppDomain>
     <AppDomain>https://localhost:3000</AppDomain>
     <AppDomain>https://localhost:5000</AppDomain>
     <AppDomain>http://127.0.0.1:5000</AppDomain>
     <AppDomain>https://api.siliconflow.cn</AppDomain>
+    <!-- <AppDomain>https://www.contoso.com</AppDomain> -->
   </AppDomains>
   <!-- 表明该 Add-in 主要是为 Workbook 类型的主机应用（即 Excel）设计的。 -->
   <Hosts>

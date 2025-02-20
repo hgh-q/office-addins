@@ -2,39 +2,71 @@
     width: 100%;
     margin: 0 auto;
     padding: 10px;
-    display: flex;
-    flex-direction: column;
-    height: 500px;
-    background-color: #f7f7f7;
+    flex: 1;
 }
 
 .message-list {
-
     width: 100%;
-    margin: 0 auto;
+    height: 100%;
     padding: 10px;
-    display: flex;
-    flex-direction: column;
-    overflow-y: auto;
-    flex-grow: 1;
+    /* display: flex;
+    flex-direction: column; */
+    overflow-y: scroll;
+}
+
+.message-container{
+    width:100%;
+    clear: both
+}
+
+.message{
+    padding: 8px;
+    margin: 4px 0;
+    border-radius: 10px;
+    max-width: 60%;
 }
 
 .user-message {
-
     background-color: #a1d4f4;
-    padding: 8px;
-    margin: 4px 0;
-    border-radius: 10px;
-    max-width: 60%;
-    align-self: flex-end;
+    text-align: left;
+    float: right;
 }
 
-.bot-message {
+.bot-message,.user-verify {
     background-color: #e0e0e0;
-    padding: 8px;
+    text-align: left;
+    float: left;
+}
+
+.user-verify{
+    padding: 13px 10px;
     margin: 4px 0;
     border-radius: 10px;
     max-width: 60%;
-    align-self: flex-start;
+}
 
+.user-verify .content{
+    padding: 3px 0;
+    text-align: center;
+}
+
+.user-verify .btn-list{
+    width: 100%;
+    clear: both;
+    text-align: center;
+}
+
+.user-verify button{
+    cursor: pointer;
+}
+.user-verify button:nth-child(1){
+    margin-right: 10px;
+}
+.user-verify button:nth-child(2){
+    margin-left: 10px;
+}
+
+.user-verify button:hover{
+    background-color: #218838;
+    text-align: center;
 }

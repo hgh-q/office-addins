@@ -100,6 +100,19 @@ module.exports = async (env, options) => {
         type: "https",
         options: env.WEBPACK_BUILD || options.https !== undefined ? options.https : await getHttpsOptions(),
       },
+      proxy: [
+        // {
+        //   context: ['/api'],
+        //   target: 'http://127.0.0.1:5000',
+        //   // secure: false,  // 允许不安全的证书（避免验证问题）
+        // },
+        // {
+        //   context: ['/socket'],  // 如果你有其他 WebSocket 连接路径
+        //   target: 'wss://127.0.0.1:5000',
+        //   secure: false,         // 如果目标是 HTTPS/WSS 服务器
+        //   ws: true,              // 开启 WebSocket 代理
+        // },
+      ],
       port: process.env.npm_package_config_dev_server_port || 3000,
       hot: true, // 启用 React 组件热重载
       historyApiFallback: true, // 让 React Router 兼容

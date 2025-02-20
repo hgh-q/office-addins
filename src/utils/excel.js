@@ -1,28 +1,81 @@
-function readExcel() {
-    Excel.run(function (context) {
+function readExcel(cells) {
+    return Excel.run(function (context) {
         var sheet = context.workbook.worksheets.getActiveWorksheet();
-        var range = sheet.getRange("A1:B10");
+        var range = sheet.getRange(cells);
         range.load("values");
-
         return context.sync().then(function () {
-            console.log("Data from A1:B10:", range.values);
+            return range.values
         });
     }).catch(function (error) {
         console.error(error);
     });
 }
 
-function writeExcel(cell, content) {
-    Excel.run(function (context) {
+function readUseExcel() {
+    return Excel.run(function (context) {
         var sheet = context.workbook.worksheets.getActiveWorksheet();
-        var range = sheet.getRange(cell);
-        range.values = [[content]];
-
+        var usedRange = sheet.getUsedRange();
+        usedRange.load("values");
         return context.sync().then(function () {
-            // console.log("Data written to A1");
+            return usedRange.values
         });
     }).catch(function (error) {
         console.error(error);
+    });
+}
+
+const writeSelectedRange = (content)=>{
+    return Excel.run(function (context) {
+        var selectedRange = context.workbook.getSelectedRange();
+        selectedRange.values = [[content]]
+
+        return context.sync().then(function () {
+            return 1
+        });
+    }).catch(function (error) {
+        return 0
+    });
+}
+
+function writeExcel(cell, content) {
+    return Excel.run(function (context) {
+        var sheet = context.workbook.worksheets.getActiveWorksheet();
+        var range = null
+        range = sheet.getRange(cell);
+        range.values = [[content]];
+
+        return context.sync().then(function () {
+            return 1
+        });
+    }).catch(function (error) {
+        return 0
+    });
+}
+
+function writeNonExcel(column, content) {
+    Excel.run(function (context) {
+        let columnInd = column.charCodeAt(0) - 65
+        var sheet = context.workbook.worksheets.getActiveWorksheet();
+        var usedRange = sheet.getUsedRange();  // 获取工作表的已使用范围
+        usedRange.load("values,rowCount");  // 加载范围的值和行数
+        return context.sync().then(function () {
+            var lastRow = usedRange.rowCount;
+            for (let i = lastRow - 1; i >= 0; i--) {
+                const val = usedRange.values[i][columnInd]
+                if (val !== null && val !== "") {
+                    lastRow = i + 2;  // 行索引从1开始
+                    break;
+                }
+            }
+            // 将内容写入到最后一个有内容行的下一行
+            var targetCell = column + lastRow;
+            var targetRange = sheet.getRange(targetCell);
+            targetRange.values = [[content]];
+
+            return context.sync();
+        });
+    }).catch(function (error) {
+        // 弹窗报错提醒
     });
 }
 
@@ -137,7 +190,43 @@ function setWorkbookMetadata() {
     });
 }
 
+const openMyDialog = () => {
+
+    
+    // Office.context.ui.displayDialogAsync('https://www.contoso.com/myDialog.html');
+    // Office.context.ui.displayDialogAsync('https://www.contoso.com/myDialog.html',{ height: 300, width: 300 },);
+    // Office.context.ui.displayDialogAsync(
+    //     'https://www.contoso.com/myDialog.html',
+    //     { height: 30, width: 30 },
+    //     (result) => {
+    //         writeExcel("C2", result.status)
+    //         // if (result.status === Office.AsyncResultStatus.Succeeded) {
+    //             const dialog = result.value;
+    //             dialog.addEventHandler(Office.EventType.DialogMessageReceived, (message) => {
+    //                 // 根据消息内容执行进一步操作
+    //                 console.log(message);
+    //             });
+    //         // } else {
+    //         //     console.error('对话框加载失败:', result.error.message);
+    //         // }
+    //     }
+    // );
+
+}
+
+// messageBox无效
+const openMessageBox = (message, cell) => {
+    Excel.run(context => {
+        const app = context.application;
+        writeExcel("B1", 1)
+        app.messageBox("确认框", `您确定要将数据${message}插入到 ${cell} 单元格吗?`, ["是", "否"]);
+        writeExcel("B1", 2)
+        context.sync();
+    }).catch(error => {
+        console.error(error);
+    });
+}
 
 export {
-    readExcel, writeExcel, setCellStyle, addFormula
+    readExcel, readUseExcel, writeExcel, writeSelectedRange, writeNonExcel, openMessageBox, openMyDialog, setCellStyle, addFormula
 }
