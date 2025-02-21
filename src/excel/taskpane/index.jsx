@@ -4,11 +4,8 @@ import Dialogue from './components/Dialogue';
 import InputBox from './components/InputBox';
 import 'whatwg-fetch';
 import "./taskpane.css";
-import { readExcel, readUseExcel, writeExcel, writeSelectedRange, writeNonExcel, openMessageBox, openMyDialog } from "../../utils/excel";
+import { readExcel, readUseExcel, writeExcel, writeSelectedRange, writeNonExcel, openMessageBox, openMyDialog } from "@/utils/excel";
 import 'whatwg-fetch';
-// import 'web-streams-polyfill';
-// import 'streams-polyfill';
-// import "@stardazed/streams-polyfill"
 
 const App = () => {
 
@@ -16,20 +13,19 @@ const App = () => {
   const [AIResult, setAIResult] = useState("");
   const [userVerify, setUserVerify] = useState(null);
   const [messages, setMessages] = useState([
-    // { "role": "system", "content": `你是一名Excel数据分析师，我会为你提供完整的excel内容，需要根据我的要求返回结果（最总答案为Excel公式）`, text: "你是一名Excel数据分析师" },
     { "role": "system", "content": `你是一名Excel数据分析师，我会为你提供完整的excel内容，需要根据我的要求返回结果`, text: "你是一名Excel数据分析师" },
   ]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    try{
-      if (userVerify === 1){
+    try {
+      if (userVerify === 1) {
         writeSelectedRange(AIResult)
         setAIResult("")
-      }else if(userVerify ===0){
+      } else if (userVerify === 0) {
         setAIResult("")
       }
-    }catch{}
+    } catch { }
   }, [userVerify])
 
   const handleError = (errorText) => {
@@ -54,17 +50,17 @@ const App = () => {
     // 如果没有匹配到 \boxed{} 格式的内容
     // writeExcel("B1", 1)
     if (!match) {
-      try{
+      try {
         const excelFormulaRegex = /=.*\(.+\)/g;
         match = content.match(excelFormulaRegex);
         // writeExcel("B2", 125235)
-      }catch (error){
+      } catch (error) {
         // writeExcel("B9", JSON.stringify(error))
       }
     }
 
     // writeExcel("B3", 1)
-    if (!match){
+    if (!match) {
       return boxedString
     }
     // writeExcel("B4", JSON.stringify(match))
@@ -87,7 +83,6 @@ const App = () => {
     return content;
   }
 
-
   const getDSMessages = (messages) => {
     return messages.filter(item => ["system", "user", "assistant"].includes(item.role)).map(({ role, content }) => ({ role, content }))
   }
@@ -99,8 +94,8 @@ const App = () => {
     setLoading(true);
     setMessage('');
     try {
-      // ExcelData = await readUseExcel()
-      ExcelData = await readExcel("A1:I35")
+      ExcelData = await readUseExcel()
+      // ExcelData = await readExcel("A1:I35")
     } catch {
       ExcelData = [["项目", "价格"], ["a", 1], ["b", 2], ["c", 3], ["d", 4]]
     }
@@ -272,18 +267,18 @@ const App = () => {
       range.load("values,address,rowCount,columnCount"); // 加载所有单元格的值
 
       return context.sync().then(function () {
-          //  writeExcel("B8", `${JSON.stringify(range.values)},,,${JSON.stringify(range.address)},,,${JSON.stringify(range.rowCount)},,,${JSON.stringify(range.columnCount)}`)
-          return range.values
+        //  writeExcel("B8", `${JSON.stringify(range.values)},,,${JSON.stringify(range.address)},,,${JSON.stringify(range.rowCount)},,,${JSON.stringify(range.columnCount)}`)
+        return range.values
       });
-  }).catch(function (error) {
+    }).catch(function (error) {
       console.error(error);
-  });
+    });
   }
 
   return (
     <div className="container_01">
       <Header />
-      <Dialogue messages={messages} AIResult={AIResult}  loading={loading} setUserVerify={setUserVerify}/>
+      <Dialogue messages={messages} AIResult={AIResult} loading={loading} setUserVerify={setUserVerify} />
       <InputBox message={message} setMessage={setMessage} sendMessage={sendMessageStream} loading={loading} />
       {/* <button onClick={test}>test</button> */}
     </div>

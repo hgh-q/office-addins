@@ -1,6 +1,11 @@
 {
-    "presets": [
+  "presets": [
+    [
       "@babel/preset-env",
-      "@babel/preset-react"
-    ]
-  }
+      {
+        "targets": "> 0.25%, not dead" // 这里可以根据需要修改浏览器兼容范围
+      }
+    ],
+    "@babel/preset-react"
+  ]
+}

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<OfficeApp
-          xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
+<OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
           xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides"
@@ -17,31 +16,21 @@
   </Description>
   <IconUrl DefaultValue="https://localhost:3000/assets/icon-32.png"/>
   <HighResolutionIconUrl DefaultValue="https://localhost:3000/assets/icon-64.png"/>
-  <!-- 帮助文档URL -->
-  <!-- <SupportUrl DefaultValue="https://www.contoso.com/help"/> -->
-  <!-- 指定了允许访问该 Office Add-in 的域（URL）。它用于限制 Add-in 只能从指定的域加载资源，这样可以提高安全性，确保 Add-in 不会从不受信任的来源加载内容。 -->
+  <SupportUrl DefaultValue="https://www.contoso.com/help"/>
   <AppDomains>
-    <AppDomain>https://localhost:3000</AppDomain>
-    <AppDomain>https://localhost:5000</AppDomain>
     <AppDomain>https://api.siliconflow.cn</AppDomain>
-    <AppDomain>https://www.contoso.com</AppDomain>
   </AppDomains>
-  <!-- 表明该 Add-in 主要是为 Workbook 类型的主机应用（即 Excel）设计的。 -->
   <Hosts>
     <Host Name="Workbook"/>
   </Hosts>
-  <!-- 指定了 Add-in 的 Web 资源位置：https://localhost:3000/index.html。这是任务窗格的加载地址 -->
   <DefaultSettings>
-    <SourceLocation DefaultValue="https://localhost:3000/index.html"/>
+    <SourceLocation DefaultValue="https://localhost:3000/excel.html"/>
   </DefaultSettings>
-  <!-- 应用具有 ReadWriteDocument 权限，可以读取和修改文档内容。 -->
   <Permissions>ReadWriteDocument</Permissions>
   <VersionOverrides xmlns="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="VersionOverridesV1_0">
-
     <Hosts>
       <Host xsi:type="Workbook">
         <DesktopFormFactor>
-        
           <GetStarted>
             <Title resid="GetStarted.Title"/>
             <Description resid="GetStarted.Description"/>
@@ -49,7 +38,6 @@
           </GetStarted>
 
           <FunctionFile resid="Commands.Url" />
-          <!-- 主命令面板 -->
           <ExtensionPoint xsi:type="PrimaryCommandSurface">
             <CustomTab id="TabCustom1">
               <Group id="TabCustom1.group1">
@@ -93,20 +81,20 @@
       <bt:Urls>
         <bt:Url id="GetStarted.LearnMoreUrl" DefaultValue="https://go.microsoft.com/fwlink/?LinkId=276812"/>
         <bt:Url id="Commands.Url" DefaultValue="https://localhost:3000/commands.html"/>
-        <bt:Url id="Taskpane.Url" DefaultValue="https://localhost:3000/index.html"/>
+        <bt:Url id="Taskpane.Url" DefaultValue="https://localhost:3000/excel.html"/>
       </bt:Urls>
       <bt:ShortStrings>
         <bt:String id="GetStarted.Title" DefaultValue="SAIC AI">
           <Override Locale="zh-CN" Value="SAIC AI" xmlns="http://schemas.microsoft.com/office/officeappbasictypes/1.0"/>
         </bt:String>
-        <bt:String id="TaskpaneButton.Label" DefaultValue="AI dialogue">
-          <Override Locale="zh-CN" Value="AI对话" xmlns="http://schemas.microsoft.com/office/officeappbasictypes/1.0"/>
+        <bt:String id="TabCustom1.customTab.Label" DefaultValue="AI">
+          <Override Locale="zh-CN" Value="SAIC AI" xmlns="http://schemas.microsoft.com/office/officeappbasictypes/1.0"/>
         </bt:String>
         <bt:String id="TabCustom1.Group1.Label" DefaultValue="AI">
           <Override Locale="zh-CN" Value="AI" xmlns="http://schemas.microsoft.com/office/officeappbasictypes/1.0"/>
         </bt:String>
-        <bt:String id="TabCustom1.customTab.Label" DefaultValue="AI">
-          <Override Locale="zh-CN" Value="SAIC AI" xmlns="http://schemas.microsoft.com/office/officeappbasictypes/1.0"/>
+        <bt:String id="TaskpaneButton.Label" DefaultValue="AI dialogue">
+          <Override Locale="zh-CN" Value="AI对话" xmlns="http://schemas.microsoft.com/office/officeappbasictypes/1.0"/>
         </bt:String>
       </bt:ShortStrings>
       <bt:LongStrings>

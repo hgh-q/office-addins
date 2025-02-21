@@ -20,13 +20,18 @@
     "prettier": "office-addin-lint prettier",
     "signin": "office-addin-dev-settings m365-account login",
     "signout": "office-addin-dev-settings m365-account logout",
-    "start": "office-addin-debugging start manifest.xml",
-    "stop": "office-addin-debugging stop manifest.xml",
-    "validate": "office-addin-manifest validate manifest.xml",
+    "start:excel": "office-addin-debugging start ./src/manifest/manifest-excel.xml",
+    "start:word": "office-addin-debugging start  ./src/manifest/manifest-word.xml",
+    "start:ppt": "office-addin-debugging start  ./src/manifest/manifest-ppt.xml",
+    "stop:excel": "office-addin-debugging stop ./src/manifest/manifest-excel.xml",
+    "stop:word": "office-addin-debugging stop ./src/manifest/manifest-word.xml",
+    "stop:ppt": "office-addin-debugging stop ./src/manifest/manifest-ppt.xml",
+    "validate:excel": "office-addin-manifest validate ./src/manifest/manifest-excel.xml",
+    "validate:word": "office-addin-manifest validate ./src/manifest/manifest-word.xml",
+    "validate:ppt": "office-addin-manifest validate ./src/manifest/manifest-ppt.xml",
     "watch": "webpack --mode development --watch"
   },
   "dependencies": {
-    "@stardazed/streams-polyfill": "^2.4.0",
     "core-js": "^3.36.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -39,12 +44,9 @@
     "@babel/preset-react": "^7.26.3",
     "@types/office-js": "^1.0.377",
     "@types/office-runtime": "^1.0.35",
-    "acorn": "^8.11.3",
     "babel-loader": "^9.2.1",
     "copy-webpack-plugin": "^12.0.2",
     "css-loader": "^7.1.2",
-    "eslint-plugin-office-addins": "^3.0.2",
-    "file-loader": "^6.2.0",
     "html-loader": "^5.0.0",
     "html-webpack-plugin": "^5.6.0",
     "office-addin-cli": "^1.6.5",
@@ -53,18 +55,18 @@
     "office-addin-lint": "^2.3.5",
     "office-addin-manifest": "^1.13.6",
     "office-addin-prettier-config": "^1.2.1",
-    "os-browserify": "^0.3.0",
     "process": "^0.11.10",
-    "source-map-loader": "^5.0.0",
     "style-loader": "^4.0.0",
-    "styled-components": "^6.1.15",
     "webpack": "^5.95.0",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "5.1.0"
   },
   "prettier": "office-addin-prettier-config",
   "browserslist": [
+    "> 0.25%",
     "last 2 versions",
-    "ie 11"
+    "ie 11",
+    "ie 10",
+    "ie 9"
   ]
 }

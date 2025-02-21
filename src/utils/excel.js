@@ -24,10 +24,13 @@ function readUseExcel() {
     });
 }
 
-const writeSelectedRange = (content) => {
+
+function writeExcel(cell, content) {
     return Excel.run(function (context) {
-        var selectedRange = context.workbook.getSelectedRange();
-        selectedRange.values = [[content]]
+        var sheet = context.workbook.worksheets.getActiveWorksheet();
+        var range = null
+        range = sheet.getRange(cell);
+        range.values = [[content]];
 
         return context.sync().then(function () {
             return 1
@@ -37,12 +40,10 @@ const writeSelectedRange = (content) => {
     });
 }
 
-function writeExcel(cell, content) {
+const writeSelectedRange = (content) => {
     return Excel.run(function (context) {
-        var sheet = context.workbook.worksheets.getActiveWorksheet();
-        var range = null
-        range = sheet.getRange(cell);
-        range.values = [[content]];
+        var selectedRange = context.workbook.getSelectedRange();
+        selectedRange.values = [[content]]
 
         return context.sync().then(function () {
             return 1
@@ -79,27 +80,27 @@ function writeNonExcel(column, content) {
     });
 }
 
-function setCellStyle() {
+function setCellStyle(cells) {
     Excel.run(function (context) {
         var sheet = context.workbook.worksheets.getActiveWorksheet();
-        var range = sheet.getRange("A1:B1");
+        var range = sheet.getRange(cells);
 
         range.format.font.bold = true;
         range.format.fill.color = "yellow";
         range.format.border.color = "black";
 
         return context.sync().then(function () {
-            console.log("Cell style applied to A1:B1");
+            console.log(`Cell style applied to ${cells}`);
         });
     }).catch(function (error) {
         console.error(error);
     });
 }
 
-function addFormula() {
+function addFormula(cell) {
     Excel.run(function (context) {
         var sheet = context.workbook.worksheets.getActiveWorksheet();
-        var range = sheet.getRange("C2");
+        var range = sheet.getRange(cell);
         range.formulas = [["=A2*B2"]];
 
         return context.sync().then(function () {
@@ -162,19 +163,6 @@ function createChart() {
     });
 }
 
-// 在 Excel 加载项中创建任务窗格
-// Office.context.ui.displayDialogAsync('https://example.com/taskpane.html', { height: 50, width: 50 }, function (asyncResult) {
-//     if (asyncResult.status === Office.AsyncResultStatus.Succeeded) {
-//         var dialog = asyncResult.value;
-//         dialog.addEventHandler(Office.EventType.DialogMessageReceived, function (message) {
-//             console.log(message);
-//         });
-//     } else {
-//         console.error('Error opening dialog:', asyncResult.error);
-//     }
-// });
-
-
 function setWorkbookMetadata() {
     Excel.run(function (context) {
         var workbook = context.workbook;
@@ -191,8 +179,6 @@ function setWorkbookMetadata() {
 }
 
 const openMyDialog = () => {
-
-
     // Office.context.ui.displayDialogAsync('https://www.contoso.com/myDialog.html');
     // Office.context.ui.displayDialogAsync('https://www.contoso.com/myDialog.html',{ height: 300, width: 300 },);
     // Office.context.ui.displayDialogAsync(
@@ -214,7 +200,7 @@ const openMyDialog = () => {
 
 }
 
-// messageBox无效
+// messageBox
 const openMessageBox = (message, cell) => {
     Excel.run(context => {
         const app = context.application;

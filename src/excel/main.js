@@ -1,10 +1,9 @@
 import React from "react";
+import "core-js"
 import ReactDOM from "react-dom/client";
-import Taskpane from "./pages/taskpane";
-import "./main.css"
+import Taskpane from "./taskpane/index";
 
 Office.onReady((info) => {
-  console.log(`info.host：${info.host}`, `Office.HostType.Excel：${Office.HostType.Excel}`,)
   // if (info.host === Office.HostType.Excel) {
   //   // 在此处使用 Excel API
   //   console.log(Excel);
@@ -13,4 +12,3 @@ Office.onReady((info) => {
   const root = ReactDOM.createRoot(rootEle);
   root.render(<Taskpane />);
 });
-
