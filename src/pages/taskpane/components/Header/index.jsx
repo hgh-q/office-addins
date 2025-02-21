@@ -12,7 +12,6 @@ import "./index.css"
 const Header = () => {
   return (
       <header className={"header"}>
-        <h1>Zone-OfficeAI</h1>
       </header>
   );
 };

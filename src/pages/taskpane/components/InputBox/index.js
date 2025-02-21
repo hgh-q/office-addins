@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./index.css"
+import send48Png from "../../../../assets/images/send-48.png"
 // import styled from "styled-components"
 
 // const FooterCss = styled.footer`
@@ -35,38 +36,31 @@ import "./index.css"
 //     }
 // `;
 
+
 const InputBox = ({ message, setMessage, sendMessage, loading }) => {
+  
+const handleKeyDown = (e) => {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    sendMessage()
+  }
+};
+
   return (
     <footer className={"footer"}>
-      <div className={"input-box"}>
+      <div className={"input-box"} style={{background: loading ? "#f0f0f0" : ""}}>
         <textarea
           placeholder="请输入您的问题..."
           value={message}
           onChange={(e) => setMessage(e.target.value)}
-        />
-        <button
-          onClick={sendMessage}
+          onKeyDown={handleKeyDown}
           disabled={loading}
-        >
-          {loading ? '处理中...' : '发送'}
-        </button>
+        />
+        <div className={"buttom-container"}>
+          {!loading && <img onClick={sendMessage} src={send48Png} />}
+        </div>
       </div>
     </footer>
-    // <FooterCss>
-    //   <InputBoxCss>
-    //     <TextareaCss
-    //       placeholder="请输入您的问题..."
-    //       value={message}
-    //       onChange={(e) => setMessage(e.target.value)}
-    //     />
-    //     <ButtonCss
-    //       onClick={sendMessage}
-    //       disabled={loading}
-    //     >
-    //       {loading ? '处理中...' : '发送'}
-    //     </ButtonCss>
-    //   </InputBoxCss>
-    // </FooterCss>
   );
 };
 

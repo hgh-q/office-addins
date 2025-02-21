@@ -1,39 +1,44 @@
 .footer {
-
-    background-color: #f1f1f1;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
 .input-box {
-
     display: flex;
     flex-direction: column;
     width: 100%;
-}
-
-textarea {
-
-    width: 100%;
-    height: 50px;
-    padding: 8px;
+    background-color: #ffffff;
+    position: relative;
     border-radius: 8px;
     border: 1px solid #ddd;
+    margin: 0 20px 10px 20px;
+}
+
+.input-box textarea {
+    width: 100%;
+    padding: 8px;
+    overflow-y: auto;
+    border: none;
+    max-height: 240px;
+    min-height: 100px;
     resize: none;
 }
 
-button {
-
-    padding: 10px;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+.input-box textarea:focus {
+    outline: none;
 }
 
-button :hover {
-    background-color: #218838;
+.input-box .buttom-container {
+    width: 100%;
+    height: 34px;
+}
+
+.input-box img {
+    position: absolute;
+    bottom: 6px;
+    right: 10px;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
 }

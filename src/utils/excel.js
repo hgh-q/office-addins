@@ -24,7 +24,7 @@ function readUseExcel() {
     });
 }
 
-const writeSelectedRange = (content)=>{
+const writeSelectedRange = (content) => {
     return Excel.run(function (context) {
         var selectedRange = context.workbook.getSelectedRange();
         selectedRange.values = [[content]]
@@ -192,7 +192,7 @@ function setWorkbookMetadata() {
 
 const openMyDialog = () => {
 
-    
+
     // Office.context.ui.displayDialogAsync('https://www.contoso.com/myDialog.html');
     // Office.context.ui.displayDialogAsync('https://www.contoso.com/myDialog.html',{ height: 300, width: 300 },);
     // Office.context.ui.displayDialogAsync(

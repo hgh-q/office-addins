@@ -16,7 +16,8 @@ const App = () => {
   const [AIResult, setAIResult] = useState("");
   const [userVerify, setUserVerify] = useState(null);
   const [messages, setMessages] = useState([
-    { "role": "system", "content": `你是一名Excel数据分析师，我会为你提供完整的excel内容，需要根据我的要求返回结果（最总答案为Excel公式）`, text: "你是一名Excel数据分析师" },
+    // { "role": "system", "content": `你是一名Excel数据分析师，我会为你提供完整的excel内容，需要根据我的要求返回结果（最总答案为Excel公式）`, text: "你是一名Excel数据分析师" },
+    { "role": "system", "content": `你是一名Excel数据分析师，我会为你提供完整的excel内容，需要根据我的要求返回结果`, text: "你是一名Excel数据分析师" },
   ]);
   const [loading, setLoading] = useState(false);
 
@@ -51,22 +52,22 @@ const App = () => {
     match = boxedString.match(boxedContentRegex);
 
     // 如果没有匹配到 \boxed{} 格式的内容
-    writeExcel("B1", 1)
+    // writeExcel("B1", 1)
     if (!match) {
       try{
         const excelFormulaRegex = /=.*\(.+\)/g;
         match = content.match(excelFormulaRegex);
-        writeExcel("B2", 125235)
+        // writeExcel("B2", 125235)
       }catch (error){
-        writeExcel("B9", JSON.stringify(error))
+        // writeExcel("B9", JSON.stringify(error))
       }
     }
 
-    writeExcel("B3", 1)
+    // writeExcel("B3", 1)
     if (!match){
       return boxedString
     }
-    writeExcel("B4", JSON.stringify(match))
+    // writeExcel("B4", JSON.stringify(match))
     // 提取的内容
     const content = match[1];
 
@@ -113,61 +114,6 @@ const App = () => {
       return updatedMessages;
     });
   };
-
-  const fetchMessages_2 = async (DSMessages) => {
-    try {
-      // const apiUrl = "https://127.0.0.1:5000/api/chat";
-      const apiUrl = "/api/chat";
-      const response = await fetch(apiUrl, {
-        method: 'POST',
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages: DSMessages }),
-      });
-
-      const responseBody = await response.json();
-
-      if (response.ok && response.status === 200) {
-        const { content, reasoning_content } = responseBody.choices[0].message
-        const messageId = Date.now();
-        setMessages(prevMessages => [...prevMessages, { id: messageId, content: "", role: "bot" }, { id: messageId, content: "", role: "assistant" }]);
-
-        // if (reasoning_content) {
-        setMessages(prevMessages => {
-          const updatedMessages = [...prevMessages];
-          const botMessageIndex = updatedMessages.findIndex(msg => msg.id === messageId && msg.role === 'bot');
-          if (botMessageIndex !== -1) {
-            updatedMessages[botMessageIndex].content = reasoning_content; // 更新bot的文本
-          }
-          return updatedMessages;
-        });
-        // } else {
-        // 更新 assistant 消息内容
-        setMessages(prevMessages => {
-          const updatedMessages = [...prevMessages];
-          const assistantMessageIndex = updatedMessages.findIndex(msg => msg.id === messageId && msg.role === 'assistant');
-          if (assistantMessageIndex !== -1) {
-            updatedMessages[assistantMessageIndex].content = content; // 更新assistant的文本
-          }
-          return updatedMessages;
-        });
-        // }
-        // Excel update part
-        // await Excel.run(async (context) => {
-        //   let sheet = context.workbook.worksheets.getActiveWorksheet();
-        //   let range = sheet.getRange("A1");
-        //   range.values = [[answer]];
-        //   await context.sync();
-        // });
-      } else {
-        handleError(`请求失败状态: ${response.status}`);
-      }
-    } catch (error) {
-      handleError(`请求失败：${error.message}`);
-    } finally {
-      setLoading(false);
-    }
-  };
-
 
   const fetchMessages = async (DSMessages) => {
     try {
@@ -236,6 +182,7 @@ const App = () => {
                 });
               }
             } catch (error) {
+              // setLoading(false);
               // console.error(`解析JSON失败decodedString：${decodedString}:${error}`);
             }
           }
@@ -244,18 +191,6 @@ const App = () => {
           console.log(responseBody);
         }
       } else {
-        // writeExcel("B4", `ReadableStream is not supported`)
-        // if (typeof EventSource !== 'undefined') {
-        //   writeExcel("A1", `EventSource is supported`)
-        // } else {
-        //   writeExcel("B1", `EventSource is not supported`)
-        // }
-
-        // if ("WebSocket" in window) {
-        //   writeExcel("A2", `WebSocket is supported`)
-        // } else {
-        //   writeExcel("B2", `WebSocket is not supported`)
-        // }
         let reasoningContent = ''; // 存储 reasoning_content
         let content = ''; // 存储 content
         const messageId = Date.now(); // 或者你可以用其他方式生成唯一 ID，例如自增计数器
@@ -274,6 +209,7 @@ const App = () => {
           const decodedString = data.replace(/^data: /, '');
           if (decodedString === '[END]') {
             try {
+              setLoading(false);
               setAIResult(parseDeepSeekBoxedResult(content))
             } catch {
               console.log('Stream ended');
@@ -326,8 +262,6 @@ const App = () => {
       }
     } catch (error) {
       handleError(`请求失败：${error.message}`);
-    } finally {
-      setLoading(false);
     }
   }
 
@@ -338,7 +272,7 @@ const App = () => {
       range.load("values,address,rowCount,columnCount"); // 加载所有单元格的值
 
       return context.sync().then(function () {
-           writeExcel("B8", `${JSON.stringify(range.values)},,,${JSON.stringify(range.address)},,,${JSON.stringify(range.rowCount)},,,${JSON.stringify(range.columnCount)}`)
+          //  writeExcel("B8", `${JSON.stringify(range.values)},,,${JSON.stringify(range.address)},,,${JSON.stringify(range.rowCount)},,,${JSON.stringify(range.columnCount)}`)
           return range.values
       });
   }).catch(function (error) {
@@ -347,11 +281,11 @@ const App = () => {
   }
 
   return (
-    <div className="container">
+    <div className="container_01">
       <Header />
       <Dialogue messages={messages} AIResult={AIResult}  loading={loading} setUserVerify={setUserVerify}/>
       <InputBox message={message} setMessage={setMessage} sendMessage={sendMessageStream} loading={loading} />
-      <button onClick={test}>test</button>
+      {/* <button onClick={test}>test</button> */}
     </div>
   );
 };

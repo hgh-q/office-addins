@@ -9,23 +9,22 @@
   <Version>1.0.0.1</Version>
   <ProviderName>zone</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
-  <DisplayName DefaultValue="Zone-OfficeAI">
-    <Override Locale="zh-CN" Value="Zone-OfficeAI" xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"/>
+  <DisplayName DefaultValue="SAIC-OfficeAI">
+    <Override Locale="zh-CN" Value="SAIC-OfficeAI" xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"/>
   </DisplayName>
   <Description DefaultValue="a template to get started.">
-    <Override Locale="zh-CN" Value="代码事件工具" xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"/>
+    <Override Locale="zh-CN" Value="Intelligent office AI" xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"/>
   </Description>
   <IconUrl DefaultValue="https://localhost:3000/assets/icon-32.png"/>
   <HighResolutionIconUrl DefaultValue="https://localhost:3000/assets/icon-64.png"/>
   <!-- 帮助文档URL -->
-  <SupportUrl DefaultValue="https://www.contoso.com/help"/>
+  <!-- <SupportUrl DefaultValue="https://www.contoso.com/help"/> -->
   <!-- 指定了允许访问该 Office Add-in 的域（URL）。它用于限制 Add-in 只能从指定的域加载资源，这样可以提高安全性，确保 Add-in 不会从不受信任的来源加载内容。 -->
   <AppDomains>
     <AppDomain>https://localhost:3000</AppDomain>
     <AppDomain>https://localhost:5000</AppDomain>
-    <AppDomain>http://127.0.0.1:5000</AppDomain>
     <AppDomain>https://api.siliconflow.cn</AppDomain>
-    <!-- <AppDomain>https://www.contoso.com</AppDomain> -->
+    <AppDomain>https://www.contoso.com</AppDomain>
   </AppDomains>
   <!-- 表明该 Add-in 主要是为 Workbook 类型的主机应用（即 Excel）设计的。 -->
   <Hosts>
@@ -38,21 +37,29 @@
   <!-- 应用具有 ReadWriteDocument 权限，可以读取和修改文档内容。 -->
   <Permissions>ReadWriteDocument</Permissions>
   <VersionOverrides xmlns="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="VersionOverridesV1_0">
+
     <Hosts>
-      <!-- <Host xsi:type="Workbook"> -->
-      <Host xsi:type="Document">
+      <Host xsi:type="Workbook">
         <DesktopFormFactor>
-          <FunctionFile resid="Commands.Url"/>
+        
+          <GetStarted>
+            <Title resid="GetStarted.Title"/>
+            <Description resid="GetStarted.Description"/>
+            <LearnMoreUrl resid="GetStarted.LearnMoreUrl"/>
+          </GetStarted>
+
+          <FunctionFile resid="Commands.Url" />
           <!-- 主命令面板 -->
           <ExtensionPoint xsi:type="PrimaryCommandSurface">
-            <OfficeTab id="TabHome">
-              <Group id="CommandsGroup">
-                <Label resid="CommandsGroup.Label"/>
+            <CustomTab id="TabCustom1">
+              <Group id="TabCustom1.group1">
+                <Label resid="TabCustom1.Group1.Label" />
                 <Icon>
                   <bt:Image size="16" resid="Icon.16x16"/>
                   <bt:Image size="32" resid="Icon.32x32"/>
                   <bt:Image size="80" resid="Icon.80x80"/>
                 </Icon>
+                  
                 <Control xsi:type="Button" id="TaskpaneButton">
                   <Label resid="TaskpaneButton.Label"/>
                   <Supertip>
@@ -70,35 +77,9 @@
                   </Action>
                 </Control>
               </Group>
-            </OfficeTab>
-            <!-- 确保这个选项卡是作为额外选项卡显示 -->
-            <!-- <CustomTab id="zoneOfficeAI">
-              <Group id="ZoneAI.Group1">
-                <Label resid="ZoneAI.Group1Label"/>
-                <Icon>
-                  <bt:Image size="16" resid="Icon.16x16"/>
-                  <bt:Image size="32" resid="Icon.32x32"/>
-                  <bt:Image size="80" resid="Icon.80x80"/>
-                </Icon>
-                <Control xsi:type="Button" id="ZoneAI.Group1Btn">
-                  <Label resid="ZoneAI.Group1Btn.Label"/>
-                  <Supertip>
-                    <Title resid="ZoneAI.Group1Btn.Label"/>
-                    <Description resid="ZoneAI.Group1Btn.Tooltip"/>
-                  </Supertip>
-                  <Icon>
-                    <bt:Image size="16" resid="Icon.16x16"/>
-                    <bt:Image size="32" resid="Icon.32x32"/>
-                    <bt:Image size="80" resid="Icon.80x80"/>
-                  </Icon>
-                  <Action xsi:type="ShowTaskpane">
-                    <TaskpaneId>CodeToolsId</TaskpaneId>
-                    <SourceLocation resid="Taskpane.Url"/>
-                  </Action>
-                </Control>
-              </Group>
-              <Label resid="ZoneAI.CustomTabLabel" />
-            </CustomTab> -->
+              <Label resid="TabCustom1.customTab.Label" />
+              <!-- <InsertAfter>TabReview</InsertAfter> -->
+            </CustomTab>
           </ExtensionPoint>
         </DesktopFormFactor>
       </Host>
@@ -115,28 +96,25 @@
         <bt:Url id="Taskpane.Url" DefaultValue="https://localhost:3000/index.html"/>
       </bt:Urls>
       <bt:ShortStrings>
-        <bt:String id="TaskpaneButton.Label" DefaultValue="Show Task Pane">
-          <Override Locale="zh-CN" Value="Zone-OfficeAI" xmlns="http://schemas.microsoft.com/office/officeappbasictypes/1.0"/>
+        <bt:String id="GetStarted.Title" DefaultValue="SAIC AI">
+          <Override Locale="zh-CN" Value="SAIC AI" xmlns="http://schemas.microsoft.com/office/officeappbasictypes/1.0"/>
         </bt:String>
-        <bt:String id="ZoneAI.Group1Label" DefaultValue="Code Tools">
-          <Override Locale="zh-CN" Value="代码工具" xmlns="http://schemas.microsoft.com/office/officeappbasictypes/1.0"/>
+        <bt:String id="TaskpaneButton.Label" DefaultValue="AI dialogue">
+          <Override Locale="zh-CN" Value="AI对话" xmlns="http://schemas.microsoft.com/office/officeappbasictypes/1.0"/>
         </bt:String>
-        <bt:String id="ZoneAI.Group1Btn.Label" DefaultValue="Code Tools">
-          <Override Locale="zh-CN" Value="代码工具" xmlns="http://schemas.microsoft.com/office/officeappbasictypes/1.0"/>
+        <bt:String id="TabCustom1.Group1.Label" DefaultValue="AI">
+          <Override Locale="zh-CN" Value="AI" xmlns="http://schemas.microsoft.com/office/officeappbasictypes/1.0"/>
         </bt:String>
-        <bt:String id="ZoneAI.CustomTabLabel" DefaultValue="Code Tools2">
-          <Override Locale="zh-CN" Value="代码工具2" xmlns="http://schemas.microsoft.com/office/officeappbasictypes/1.0"/>
+        <bt:String id="TabCustom1.customTab.Label" DefaultValue="AI">
+          <Override Locale="zh-CN" Value="SAIC AI" xmlns="http://schemas.microsoft.com/office/officeappbasictypes/1.0"/>
         </bt:String>
       </bt:ShortStrings>
       <bt:LongStrings>
-        <bt:String id="GetStarted.Description" DefaultValue="Your sample ZoneAI loaded successfully. Go to the HOME tab and click the 'Show Task Pane' button to get started.">
-          <Override Locale="zh-CN" Value="Zone-OfficeAI已成功加载。点击'Zone-OfficeAI'按钮开始使用。" xmlns="http://schemas.microsoft.com/office/officeappbasictypes/1.0"/>
+        <bt:String id="GetStarted.Description" DefaultValue="Your sample SAIC-OfficeAI loaded successfully.">
+          <Override Locale="zh-CN" Value="SAIC-OfficeAI已成功加载" xmlns="http://schemas.microsoft.com/office/officeappbasictypes/1.0"/>
         </bt:String>
-        <bt:String id="TaskpaneButton.Tooltip" DefaultValue="Click to Show a Taskpane">
-          <Override Locale="zh-CN" Value="点击打开工具" xmlns="http://schemas.microsoft.com/office/officeappbasictypes/1.0"/>
-        </bt:String>
-        <bt:String id="ZoneAI.Group1Btn.Tooltip" DefaultValue="Click to Show Code Tools">
-          <Override Locale="zh-CN" Value="点击打开工具" xmlns="http://schemas.microsoft.com/office/officeappbasictypes/1.0"/>
+        <bt:String id="TaskpaneButton.Tooltip" DefaultValue="Click to Show a AI dialogue Taskpane">
+          <Override Locale="zh-CN" Value="点击打开AI对话" xmlns="http://schemas.microsoft.com/office/officeappbasictypes/1.0"/>
         </bt:String>
       </bt:LongStrings>
     </Resources>
