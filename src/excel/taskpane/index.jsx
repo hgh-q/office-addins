@@ -3,12 +3,13 @@ import Header from './components/Header';
 import Dialogue from './components/Dialogue';
 import InputBox from './components/InputBox';
 import 'whatwg-fetch';
+import useDialog from '@/hooks/useDialog'; // Import the custom hook
 import "./taskpane.css";
 import { readExcel, readUseExcel, writeExcel, writeSelectedRange, writeNonExcel, openMessageBox, openMyDialog } from "@/utils/excel";
 import 'whatwg-fetch';
 
 const App = () => {
-
+  const { openDialog, closeDialog, dialog } = useDialog(); // Use the dialog hook
   const [message, setMessage] = useState("");
   const [AIResult, setAIResult] = useState("");
   const [userVerify, setUserVerify] = useState(null);
@@ -260,27 +261,22 @@ const App = () => {
     }
   }
 
-  const test = () => {
-    return Excel.run(function (context) {
-      var sheet = context.workbook.worksheets.getActiveWorksheet();
-      var range = sheet.getUsedRange(); // 获取整个工作表的范围
-      range.load("values,address,rowCount,columnCount"); // 加载所有单元格的值
-
-      return context.sync().then(function () {
-        //  writeExcel("B8", `${JSON.stringify(range.values)},,,${JSON.stringify(range.address)},,,${JSON.stringify(range.rowCount)},,,${JSON.stringify(range.columnCount)}`)
-        return range.values
-      });
-    }).catch(function (error) {
-      console.error(error);
-    });
+  function processMessage(arg) {
+    // closeDialog();
+    if (dialog) {
+      dialog.close();
+    }
   }
 
+  const test = () => {
+    openDialog('https://localhost:3000/popup.html', processMessage);
+  }
   return (
     <div className="container_01">
       <Header />
       <Dialogue messages={messages} AIResult={AIResult} loading={loading} setUserVerify={setUserVerify} />
       <InputBox message={message} setMessage={setMessage} sendMessage={sendMessageStream} loading={loading} />
-      {/* <button onClick={test}>test</button> */}
+      <button onClick={test}>test</button>
     </div>
   );
 };

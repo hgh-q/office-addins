@@ -24,6 +24,30 @@ function readUseExcel() {
     });
 }
 
+function getUseAddress() {
+    return Excel.run(function (context) {
+        var sheet = context.workbook.worksheets.getActiveWorksheet();
+        var selectedRange = sheet.getRange();
+        selectedRange.load('address');  // 加载选中区域的地址
+        return context.sync().then(function () {
+            const address = selectedRange.address
+            writeExcel("D1", address)
+            return address
+        });
+    });
+}
+
+// Excel.run(function (context) {
+//     var sheet = context.workbook.worksheets.getActiveWorksheet();
+//     var range = null
+//     range = sheet.getRange("A1");
+//     range.values = [["content"]];
+
+//     context.sync().then(function () {
+//     });
+// }).catch(function (error) {
+// });
+
 
 function writeExcel(cell, content) {
     return Excel.run(function (context) {

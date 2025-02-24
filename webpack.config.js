@@ -22,6 +22,7 @@ module.exports = async (env, options) => {
       excel: ['./src/excel/main.js'],
       word: ['./src/word/main.js'],
       ppt: ['./src/ppt/main.js'],
+      popup: "./src/dialogs/main.js"
     },
     output: {
       // 输出目录，构建后的文件将存放在 /build 下
@@ -113,6 +114,11 @@ module.exports = async (env, options) => {
         filename: "commands.html",
         template: "./src/commands/commands.html",
         chunks: ["polyfill", "commands"],
+      }), 
+      new HtmlWebpackPlugin({
+        filename: "popup.html",
+        template: "./src/dialogs/popup.html",
+        chunks: ["polyfill", "popup"]
       }),
       new HtmlWebpackPlugin({
         template: "./public/index.html",
@@ -161,6 +167,7 @@ module.exports = async (env, options) => {
       // },
       // ],
       port: process.env.npm_package_config_dev_server_port || 3000,
+      // port: process.env.npm_package_config_dev_server_port || 3000,
       hot: true, // 启用 React 组件热重载
       historyApiFallback: true, // 让 React Router 兼容
     },

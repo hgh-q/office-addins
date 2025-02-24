@@ -31,14 +31,21 @@
     <Hosts>
       <Host xsi:type="Workbook">
         <DesktopFormFactor>
-          <GetStarted>
+          <!-- <GetStarted>
             <Title resid="GetStarted.Title"/>
             <Description resid="GetStarted.Description"/>
             <LearnMoreUrl resid="GetStarted.LearnMoreUrl"/>
-          </GetStarted>
+          </GetStarted> -->
 
           <FunctionFile resid="Commands.Url" />
           <ExtensionPoint xsi:type="PrimaryCommandSurface">
+            <!-- <Action xsi:type="ShowTaskpane">
+              <TaskpaneId>ButtonId1</TaskpaneId>
+              <SourceLocation resid="Taskpane.Url"/>
+            </Action>			 -->
+            <!-- <Action xsi:type="ExecuteFunction">
+              <FunctionName>btnconnectservice</FunctionName>
+            </Action> -->
             <CustomTab id="TabCustom1">
               <Group id="TabCustom1.group1">
                 <Label resid="TabCustom1.Group1.Label" />
@@ -65,6 +72,60 @@
                   </Action>
                 </Control>
               </Group>
+              
+							<Group id="InformationEntry">
+								<Label resid="InformationEntry.Label"/>
+								<Icon>
+									<bt:Image size="16" resid="Icon.16x16"/>
+									<bt:Image size="32" resid="Icon.32x32"/>
+									<bt:Image size="80" resid="Icon.80x80"/>
+								</Icon>
+                
+                <Control xsi:type="Menu" id="TabCustom1.group2.control1">
+                  <Label resid="TABGC.Label" />
+                  <Supertip>
+                    <Title resid="TABGC.Label" />
+                    <Description resid="TABGC.ToolTip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.16x16" />
+                    <bt:Image size="32" resid="Icon.16x16" />
+                    <bt:Image size="80" resid="Icon.16x16" />
+                  </Icon>
+                  <Items>
+                    <Item id="TABGCMenu1">
+                      <Label resid="TABGC.menu1.Label"/>
+                      <Supertip>
+                        <Title resid="TABGC.menu1.Label" />
+                        <Description resid="TABGC.menu1.ToolTip" />
+                      </Supertip>
+                      <Icon>
+                        <bt:Image size="16" resid="Icon.16x16" />
+                        <bt:Image size="32" resid="Icon.16x16" />
+                        <bt:Image size="80" resid="Icon.16x16" />
+                      </Icon>
+                       <Action xsi:type="ExecuteFunction">
+                        <FunctionName>openPopup</FunctionName>
+                      </Action>
+                    </Item>
+                    <Item id="TABGCMenu2">
+                      <Label resid="TABGC.menu2.Label"/>
+                      <Supertip>
+                        <Title resid="TABGC.menu2.Label" />
+                        <Description resid="TABGC.menu2.ToolTip" />
+                      </Supertip>
+                      <Icon>
+                        <bt:Image size="16" resid="Icon.16x16" />
+                        <bt:Image size="32" resid="Icon.16x16" />
+                        <bt:Image size="80" resid="Icon.16x16" />
+                      </Icon>
+                    	<Action xsi:type="ExecuteFunction">
+                        <FunctionName>btnconnectservice</FunctionName>
+                      </Action>
+                    </Item>
+                  </Items>
+                </Control>
+							</Group>
               <Label resid="TabCustom1.customTab.Label" />
               <!-- <InsertAfter>TabReview</InsertAfter> -->
             </CustomTab>
@@ -82,11 +143,14 @@
         <bt:Url id="GetStarted.LearnMoreUrl" DefaultValue="https://go.microsoft.com/fwlink/?LinkId=276812"/>
         <bt:Url id="Commands.Url" DefaultValue="https://localhost:3000/commands.html"/>
         <bt:Url id="Taskpane.Url" DefaultValue="https://localhost:3000/excel.html"/>
-      </bt:Urls>
+      
+				<bt:Url id="Functions.Metadata.Url" DefaultValue="https://officedev.github.io/Office-Add-in-samples/Samples/excel-shared-runtime-scenario/src/functions/functions.json"/>
+				<bt:Url id="ContosoAddin.Url" DefaultValue="https://officedev.github.io/Office-Add-in-samples/Samples/excel-shared-runtime-scenario/src/taskpane/taskpane.html"/>
+			</bt:Urls>
       <bt:ShortStrings>
-        <bt:String id="GetStarted.Title" DefaultValue="SAIC AI">
+        <!-- <bt:String id="GetStarted.Title" DefaultValue="SAIC AI">
           <Override Locale="zh-CN" Value="SAIC AI" xmlns="http://schemas.microsoft.com/office/officeappbasictypes/1.0"/>
-        </bt:String>
+        </bt:String> -->
         <bt:String id="TabCustom1.customTab.Label" DefaultValue="AI">
           <Override Locale="zh-CN" Value="SAIC AI" xmlns="http://schemas.microsoft.com/office/officeappbasictypes/1.0"/>
         </bt:String>
@@ -96,14 +160,71 @@
         <bt:String id="TaskpaneButton.Label" DefaultValue="AI dialogue">
           <Override Locale="zh-CN" Value="AI对话" xmlns="http://schemas.microsoft.com/office/officeappbasictypes/1.0"/>
         </bt:String>
+
+        <bt:String id="InformationEntry.Label" DefaultValue="information entry">
+          <Override Locale="zh-CN" Value="信息录入" xmlns="http://schemas.microsoft.com/office/officeappbasictypes/1.0"/>
+        </bt:String>
+        <bt:String id="TabCustom1.Group2.Label" DefaultValue="10">
+          <Override Locale="zh-CN" Value="信息录入" xmlns="http://schemas.microsoft.com/office/officeappbasictypes/1.0"/>
+        </bt:String>
+        <bt:String id="TABGC.Label" DefaultValue="9">
+          <Override Locale="zh-CN" Value="身份证" xmlns="http://schemas.microsoft.com/office/officeappbasictypes/1.0"/>
+        </bt:String>
+        <bt:String id="TABGC.menu1.Label" DefaultValue="7">
+          <Override Locale="zh-CN" Value="部分变*" xmlns="http://schemas.microsoft.com/office/officeappbasictypes/1.0"/>
+        </bt:String>
+        <bt:String id="TABGC.menu2.Label" DefaultValue="5">
+          <Override Locale="zh-CN" Value="校验号码" xmlns="http://schemas.microsoft.com/office/officeappbasictypes/1.0"/>
+        </bt:String>
+
+				<bt:String id="Group1Label" DefaultValue="OneDrive Files" />
+				<bt:String id="GetStarted.Title" DefaultValue="Contoso data add-in has loaded successfully." />
+				<bt:String id="Functions.Namespace" DefaultValue="CONTOSOSHARE"/>
+				<bt:String id="BtnSignIn.Label" DefaultValue="Sign in"/>
+				<bt:String id="BtnSignOut.Label" DefaultValue="Sign out"/>
+				<bt:String id="BtnEnableAddinStart.Label" DefaultValue="Load on doc open"/>
+				<bt:String id="BtnDisableAddinStart.Label" DefaultValue="No load behavior"/>
+				<bt:String id="BtnConnectService.Label" DefaultValue="Connect service"/>
+				<bt:String id="BtnDisConnectService.Label" DefaultValue="Disconnect service"/>
+				<bt:String id="BtnInsertData.Label" DefaultValue="Insert data"/>
+				<bt:String id='AuthGroup.Label' DefaultValue='Authentication'/>
+				<bt:String id="CommandsGroup.Label" DefaultValue="Contoso Data"/>
+				<bt:String id='StartupGroup.Label' DefaultValue='Startup behavior'/>
+				<bt:String id='TaskpaneGroup.Label' DefaultValue='Task pane'/>
+				<bt:String id="BtnOpenTaskpane.Label" DefaultValue="Open task pane"/>
+				<bt:String id="BtnCloseTaskpane.Label" DefaultValue="Close task pane"/>
+				<bt:String id="BtnSyncData.Label" DefaultValue="Sync data"/>
+				<bt:String id="BtnSumData.Label" DefaultValue="Sum"/>
       </bt:ShortStrings>
       <bt:LongStrings>
-        <bt:String id="GetStarted.Description" DefaultValue="Your sample SAIC-OfficeAI loaded successfully.">
+        <!-- <bt:String id="GetStarted.Description" DefaultValue="Your sample SAIC-OfficeAI loaded successfully.">
           <Override Locale="zh-CN" Value="SAIC-OfficeAI已成功加载" xmlns="http://schemas.microsoft.com/office/officeappbasictypes/1.0"/>
-        </bt:String>
+        </bt:String> -->
         <bt:String id="TaskpaneButton.Tooltip" DefaultValue="Click to Show a AI dialogue Taskpane">
           <Override Locale="zh-CN" Value="点击打开AI对话" xmlns="http://schemas.microsoft.com/office/officeappbasictypes/1.0"/>
         </bt:String>
+        <bt:String id="TABGC.ToolTip" DefaultValue="身份证">
+          <Override Locale="zh-CN" Value="身份证" xmlns="http://schemas.microsoft.com/office/officeappbasictypes/1.0"/>
+        </bt:String>
+        <bt:String id="TABGC.menu1.ToolTip" DefaultValue="2">
+          <Override Locale="zh-CN" Value="部分变*" xmlns="http://schemas.microsoft.com/office/officeappbasictypes/1.0"/>
+        </bt:String>
+        <bt:String id="TABGC.menu2.ToolTip" DefaultValue="3">
+          <Override Locale="zh-CN" Value="校验号码" xmlns="http://schemas.microsoft.com/office/officeappbasictypes/1.0"/>
+        </bt:String>
+
+        
+				<bt:String id="TaskpaneButton.Tooltip" DefaultValue="Get files stored on OneDrive" />
+				<bt:String id="GetStarted.Description" DefaultValue="Choose Open Add-in, then Connect to Office 365 to get started." />
+				<bt:String id="BtnEnableAddinStart.Tooltip" DefaultValue="Add-in will load and start running as soon as document opens."/>
+				<bt:String id="BtnDisableAddinStart.Tooltip" DefaultValue="Add-in will have no load document load beahvior."/>
+				<bt:String id="BtnConnectService.Tooltip" DefaultValue="Connect to backend data service"/>
+				<bt:String id="BtnDisConnectService.Tooltip" DefaultValue="Disconnect from backend data service"/>
+				<bt:String id="BtnInsertData.Tooltip" DefaultValue="Insert data from backend data service"/>
+				<bt:String id="BtnOpenTaskpane.Tooltip" DefaultValue="Open the task pane"/>
+				<bt:String id="BtnCloseTaskpane.Tooltip" DefaultValue="Close the task pane"/>
+				<bt:String id="BtnSyncData.Tooltip" DefaultValue="Sync changes to source data"/>
+				<bt:String id="BtnSumData.Tooltip" DefaultValue="Sum selected data"/>
       </bt:LongStrings>
     </Resources>
   </VersionOverrides>

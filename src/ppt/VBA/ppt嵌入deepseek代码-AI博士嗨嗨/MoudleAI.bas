@@ -78,7 +78,7 @@ End Function
 Public Function BuildQwenRequest(inputStr As String, isCodeMode As Boolean) As String
     Dim systemPrompt As String
     If isCodeMode Then
-        systemPrompt = "你是一个 PowerPoint VBA 编程专家。请直接返回完整的 VBA 代码，不要包含任何说明文字，不要使用markdown格式。当涉及字体设置时，请使用 .Font.Name 而不是 .Font.NameFarEast 来设置字体，确保中英文使用相同字体。对于文本框等对象的字体设置，需要同时设置 .Font.Name 和 .Font.NameFarEast 以确保中文字体正确显示。"
+        systemPrompt = "你是一个 PowerPoint VBA 编程专家。请直接返回完整的 VBA 代码，不要包含任何说明文字，不要使用markdown格式。"
     Else
         systemPrompt = "你是一个乐于助人的AI助手。"
     End If
