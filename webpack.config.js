@@ -90,6 +90,10 @@ module.exports = async (env, options) => {
       ],
     },
     plugins: [
+      // new webpack.DefinePlugin({
+      //   'process.env.REACT_APP_API_HTTPS_URL': JSON.stringify(process.env.REACT_APP_API_HTTPS_URL),
+      //   'process.env.REACT_APP_API_WSS_URL': JSON.stringify(process.env.REACT_APP_API_WSS_URL),
+      // }),
       new CopyWebpackPlugin({
         patterns: [
           {
@@ -103,7 +107,7 @@ module.exports = async (env, options) => {
               if (dev) {
                 return content; // 如果是开发环境，直接返回原内容
               } else {
-                // 如果是生产环境，将内容中的 dev URL 替换成生产环境的 URL
+                                // 如果是生产环境，将内容中的 dev URL 替换成生产环境的 URL
                 return content.toString().replace(new RegExp(urlDev, "g"), urlProd);
               }
             },
@@ -156,12 +160,12 @@ module.exports = async (env, options) => {
       // proxy: [
       // {
       //   context: ['/api'],
-      //   target: 'http://127.0.0.1:5000',
+      //   target: process.env.REACT_APP_API_HTTPS_URL,
       //   // secure: false,  // 允许不安全的证书（避免验证问题）
       // },
       // {
       //   context: ['/socket'],  // 如果你有其他 WebSocket 连接路径
-      //   target: 'wss://127.0.0.1:5000',
+      //   target: process.env..REACT_APP_API_WSS_URL,
       //   secure: false,         // 如果目标是 HTTPS/WSS 服务器
       //   ws: true,              // 开启 WebSocket 代理
       // },

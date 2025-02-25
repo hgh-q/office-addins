@@ -203,24 +203,6 @@ function setWorkbookMetadata() {
 }
 
 const openMyDialog = () => {
-    // Office.context.ui.displayDialogAsync('https://www.contoso.com/myDialog.html');
-    // Office.context.ui.displayDialogAsync('https://www.contoso.com/myDialog.html',{ height: 300, width: 300 },);
-    // Office.context.ui.displayDialogAsync(
-    //     'https://www.contoso.com/myDialog.html',
-    //     { height: 30, width: 30 },
-    //     (result) => {
-    //         writeExcel("C2", result.status)
-    //         // if (result.status === Office.AsyncResultStatus.Succeeded) {
-    //             const dialog = result.value;
-    //             dialog.addEventHandler(Office.EventType.DialogMessageReceived, (message) => {
-    //                 // 根据消息内容执行进一步操作
-    //                 console.log(message);
-    //             });
-    //         // } else {
-    //         //     console.error('对话框加载失败:', result.error.message);
-    //         // }
-    //     }
-    // );
 
 }
 

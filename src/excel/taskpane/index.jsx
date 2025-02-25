@@ -112,7 +112,8 @@ const App = () => {
     try {
       // if ('ReadableStream' in window && 'getReader' in ReadableStream.prototype) {
       if (false) {
-        const apiUrl = "https://127.0.0.1:5000/api/stream";
+        // const apiUrl = `${process.env.REACT_APP_API_HTTPS_URL}/api/stream`;
+        const apiUrl = `https://127.0.0.1:5000/api/stream`;
         const response = await fetch(apiUrl, {
           method: 'POST',
           headers: { "Content-Type": "application/json" },
@@ -188,7 +189,8 @@ const App = () => {
         let content = ''; // 存储 content
         const messageId = Date.now(); // 或者你可以用其他方式生成唯一 ID，例如自增计数器
 
-        const socket = new WebSocket('wss://localhost:5000');  // WebSocket 连接到后端服务器
+        // const socket = new WebSocket(`${process.env.REACT_APP_API_WSS_URL}`);  // WebSocket 连接到后端服务器
+        const socket = new WebSocket(`wss://127.0.0.1:5000`);  // WebSocket 连接到后端服务器
 
         socket.onopen = function (event) {
           console.log('WebSocket connection opened.');

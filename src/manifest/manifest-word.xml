@@ -4,7 +4,9 @@
   <Version>1.0.0.0</Version>
   <ProviderName>Contoso</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
-  <DisplayName DefaultValue="te"/>
+  <DisplayName DefaultValue="SAIC-OfficeAI">
+    <Override Locale="zh-CN" Value="SAIC-OfficeAI" xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"/>
+  </DisplayName>
   <Description DefaultValue="A template to get started."/>
   <IconUrl DefaultValue="https://localhost:3000/assets/icon-32.png"/>
   <HighResolutionIconUrl DefaultValue="https://localhost:3000/assets/icon-64.png"/>
@@ -28,7 +30,7 @@
             <Description resid="GetStarted.Description"/>
             <LearnMoreUrl resid="GetStarted.LearnMoreUrl"/>
           </GetStarted>
-                    <FunctionFile resid="Commands.Url" />
+          <FunctionFile resid="Commands.Url" />
           <ExtensionPoint xsi:type="PrimaryCommandSurface">
             <CustomTab id="TabCustom1">
               <Group id="TabCustom1.group1">
@@ -75,13 +77,55 @@
         <bt:Url id="Taskpane.Url" DefaultValue="https://localhost:3000/word.html"/>
       </bt:Urls>
       <bt:ShortStrings>
-        <bt:String id="GetStarted.Title" DefaultValue="Get started with your sample add-in!"/>
-        <bt:String id="CommandsGroup.Label" DefaultValue="Commands Group"/>
-        <bt:String id="TaskpaneButton.Label" DefaultValue="Show Task Pane"/>
+        <bt:String id="GetStarted.Title" DefaultValue="SAIC AI">
+          <Override Locale="zh-CN" Value="SAIC AI" xmlns="http://schemas.microsoft.com/office/officeappbasictypes/1.0"/>
+        </bt:String>
+        <bt:String id="TabCustom1.customTab.Label" DefaultValue="AI">
+          <Override Locale="zh-CN" Value="SAIC AI" xmlns="http://schemas.microsoft.com/office/officeappbasictypes/1.0"/>
+        </bt:String>
+        <bt:String id="TabCustom1.Group1.Label" DefaultValue="AI">
+          <Override Locale="zh-CN" Value="AI" xmlns="http://schemas.microsoft.com/office/officeappbasictypes/1.0"/>
+        </bt:String>
+        <bt:String id="TaskpaneButton.Label" DefaultValue="AI dialogue">
+          <Override Locale="zh-CN" Value="AI对话" xmlns="http://schemas.microsoft.com/office/officeappbasictypes/1.0"/>
+        </bt:String>
+
+        <bt:String id="InformationEntry.Label" DefaultValue="information entry">
+          <Override Locale="zh-CN" Value="信息录入" xmlns="http://schemas.microsoft.com/office/officeappbasictypes/1.0"/>
+        </bt:String>
+        <bt:String id="TabCustom1.Group2.Label" DefaultValue="10">
+          <Override Locale="zh-CN" Value="信息录入" xmlns="http://schemas.microsoft.com/office/officeappbasictypes/1.0"/>
+        </bt:String>
+        <bt:String id="TABGC.Label" DefaultValue="9">
+          <Override Locale="zh-CN" Value="身份证" xmlns="http://schemas.microsoft.com/office/officeappbasictypes/1.0"/>
+        </bt:String>
+        <bt:String id="TABGC.menu1.Label" DefaultValue="7">
+          <Override Locale="zh-CN" Value="部分变*" xmlns="http://schemas.microsoft.com/office/officeappbasictypes/1.0"/>
+        </bt:String>
+        <bt:String id="TABGC.menu2.Label" DefaultValue="5">
+          <Override Locale="zh-CN" Value="校验号码" xmlns="http://schemas.microsoft.com/office/officeappbasictypes/1.0"/>
+        </bt:String>
+
+				<bt:String id="BtnConnectService.Label" DefaultValue="Connect service"/>
       </bt:ShortStrings>
       <bt:LongStrings>
-        <bt:String id="GetStarted.Description" DefaultValue="Your sample add-in loaded successfully. Go to the HOME tab and click the 'Show Task Pane' button to get started."/>
-        <bt:String id="TaskpaneButton.Tooltip" DefaultValue="Click to Show a Taskpane"/>
+        <bt:String id="TaskpaneButton.Tooltip" DefaultValue="Click to Show a AI dialogue Taskpane">
+          <Override Locale="zh-CN" Value="点击打开AI对话" xmlns="http://schemas.microsoft.com/office/officeappbasictypes/1.0"/>
+        </bt:String>
+        <bt:String id="GetStarted.Description" DefaultValue="Your sample SAIC-OfficeAI loaded successfully.">
+          <Override Locale="zh-CN" Value="SAIC-OfficeAI已成功加载" xmlns="http://schemas.microsoft.com/office/officeappbasictypes/1.0"/>
+        </bt:String>
+        <bt:String id="TABGC.ToolTip" DefaultValue="身份证">
+          <Override Locale="zh-CN" Value="身份证" xmlns="http://schemas.microsoft.com/office/officeappbasictypes/1.0"/>
+        </bt:String>
+        <bt:String id="TABGC.menu1.ToolTip" DefaultValue="2">
+          <Override Locale="zh-CN" Value="部分变*" xmlns="http://schemas.microsoft.com/office/officeappbasictypes/1.0"/>
+        </bt:String>
+        <bt:String id="TABGC.menu2.ToolTip" DefaultValue="3">
+          <Override Locale="zh-CN" Value="校验号码" xmlns="http://schemas.microsoft.com/office/officeappbasictypes/1.0"/>
+        </bt:String>
+      
+				<bt:String id="BtnConnectService.Tooltip" DefaultValue="Connect to backend data service"/>
       </bt:LongStrings>
     </Resources>
   </VersionOverrides>
