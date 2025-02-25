@@ -27,7 +27,7 @@ const Message = ({ msg, index }) => {
   );
 };
 
-const ChatComponent = ({ messages, AIResult, loading, setUserVerify }) => {
+const ChatComponent = ({ messages, AIResult, loading, isWrite }) => {
   const lastMessage = messages[messages.length - 1]
   return (
 
@@ -40,24 +40,20 @@ const ChatComponent = ({ messages, AIResult, loading, setUserVerify }) => {
           !loading && lastMessage.role === "assistant" && AIResult !== "" && [
             <div className={"message-container"}>
               <div className={"user-verify message"}>
-                <div className={"content"}>{`是否将结果："${AIResult}" 插入到选中区域`}</div>
+                <div className="content">
+                  {`是否将结果：`}
+                  <code className="highlight">{AIResult}</code>
+                  {` 插入到选中区域`}
+                </div>
                 <div className={"btn-list"}>
-                  <button onClick={() => setUserVerify(1)}>确认</button>
-                  <button onClick={() => setUserVerify(0)}>取消</button>
+                  <button onClick={() => isWrite(1)}>确认</button>
+                  <button onClick={() => isWrite(0)}>取消</button>
                 </div>
               </div>
             </div>]
         }
       </div>
     </div>
-    // <ContainerCss>
-    //   <MessageListCss>
-    //     {messages.map((msg, index) =>{
-    //       const MessageComponent = role === 'user' ? UserMessageCss : BotMessageCss;
-    //       return <MessageComponent key={index}>{msg.content}</MessageComponent>;
-    //     })}
-    //   </MessageListCss>
-    // </ContainerCss>
   );
 }
 

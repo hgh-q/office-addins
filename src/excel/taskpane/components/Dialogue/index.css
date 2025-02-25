@@ -14,12 +14,12 @@
     overflow-y: auto;
 }
 
-.message-container{
-    width:100%;
+.message-container {
+    width: 100%;
     clear: both
 }
 
-.message{
+.message {
     position: relative;
     padding: 8px;
     margin: 4px 0;
@@ -27,11 +27,11 @@
     /* max-width: 60%; */
 }
 
-.message .Thinking{
+.message .Thinking {
     padding-bottom: 2px;
 }
 
-.message .Thinking img{
+.message .Thinking img {
     position: absolute;
     top: 8px;
     left: 20%;
@@ -45,48 +45,57 @@
     float: right;
 }
 
-.bot-message,.user-verify,.bot-thinking {
+.bot-message,
+.user-verify,
+.bot-thinking {
     background-color: white;
     text-align: left;
     float: left;
 }
 
-.bot-message{
+.bot-message {
     width: 100%
 }
 
-.user-verify{
+.user-verify {
     padding: 13px 10px;
     margin: 4px 0;
     border-radius: 10px;
     /* max-width: 60%; */
 }
 
-.user-verify .content{
+.user-verify .content {
     padding: 3px 0;
 }
 
-.user-verify .btn-list{
+.highlight {
+    font-weight: bold;
+    color: #0f93b4;
+}
+
+.user-verify .btn-list {
     width: 100%;
     clear: both;
     text-align: left;
 }
 
-.user-verify button{
+.user-verify button {
     background: #81e5fe;
     cursor: pointer;
     border: none;
     padding: 4px;
     border-radius: 3px;
 }
-.user-verify button:nth-child(1){
+
+.user-verify button:nth-child(1) {
     margin-left: 10px;
     margin-right: 10px;
 }
-.user-verify button:nth-child(2){
+
+.user-verify button:nth-child(2) {
     margin-left: 10px;
 }
 
-.user-verify button:hover{
+.user-verify button:hover {
     background: #81e5fe;
 }

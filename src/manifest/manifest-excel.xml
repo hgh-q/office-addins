@@ -143,10 +143,8 @@
         <bt:Url id="GetStarted.LearnMoreUrl" DefaultValue="https://go.microsoft.com/fwlink/?LinkId=276812"/>
         <bt:Url id="Commands.Url" DefaultValue="https://localhost:3000/commands.html"/>
         <bt:Url id="Taskpane.Url" DefaultValue="https://localhost:3000/excel.html"/>
-      
-				<bt:Url id="Functions.Metadata.Url" DefaultValue="https://officedev.github.io/Office-Add-in-samples/Samples/excel-shared-runtime-scenario/src/functions/functions.json"/>
-				<bt:Url id="ContosoAddin.Url" DefaultValue="https://officedev.github.io/Office-Add-in-samples/Samples/excel-shared-runtime-scenario/src/taskpane/taskpane.html"/>
-			</bt:Urls>
+     
+      </bt:Urls>
       <bt:ShortStrings>
         <!-- <bt:String id="GetStarted.Title" DefaultValue="SAIC AI">
           <Override Locale="zh-CN" Value="SAIC AI" xmlns="http://schemas.microsoft.com/office/officeappbasictypes/1.0"/>
@@ -177,32 +175,15 @@
           <Override Locale="zh-CN" Value="校验号码" xmlns="http://schemas.microsoft.com/office/officeappbasictypes/1.0"/>
         </bt:String>
 
-				<bt:String id="Group1Label" DefaultValue="OneDrive Files" />
-				<bt:String id="GetStarted.Title" DefaultValue="Contoso data add-in has loaded successfully." />
-				<bt:String id="Functions.Namespace" DefaultValue="CONTOSOSHARE"/>
-				<bt:String id="BtnSignIn.Label" DefaultValue="Sign in"/>
-				<bt:String id="BtnSignOut.Label" DefaultValue="Sign out"/>
-				<bt:String id="BtnEnableAddinStart.Label" DefaultValue="Load on doc open"/>
-				<bt:String id="BtnDisableAddinStart.Label" DefaultValue="No load behavior"/>
 				<bt:String id="BtnConnectService.Label" DefaultValue="Connect service"/>
-				<bt:String id="BtnDisConnectService.Label" DefaultValue="Disconnect service"/>
-				<bt:String id="BtnInsertData.Label" DefaultValue="Insert data"/>
-				<bt:String id='AuthGroup.Label' DefaultValue='Authentication'/>
-				<bt:String id="CommandsGroup.Label" DefaultValue="Contoso Data"/>
-				<bt:String id='StartupGroup.Label' DefaultValue='Startup behavior'/>
-				<bt:String id='TaskpaneGroup.Label' DefaultValue='Task pane'/>
-				<bt:String id="BtnOpenTaskpane.Label" DefaultValue="Open task pane"/>
-				<bt:String id="BtnCloseTaskpane.Label" DefaultValue="Close task pane"/>
-				<bt:String id="BtnSyncData.Label" DefaultValue="Sync data"/>
-				<bt:String id="BtnSumData.Label" DefaultValue="Sum"/>
       </bt:ShortStrings>
       <bt:LongStrings>
-        <!-- <bt:String id="GetStarted.Description" DefaultValue="Your sample SAIC-OfficeAI loaded successfully.">
-          <Override Locale="zh-CN" Value="SAIC-OfficeAI已成功加载" xmlns="http://schemas.microsoft.com/office/officeappbasictypes/1.0"/>
-        </bt:String> -->
         <bt:String id="TaskpaneButton.Tooltip" DefaultValue="Click to Show a AI dialogue Taskpane">
           <Override Locale="zh-CN" Value="点击打开AI对话" xmlns="http://schemas.microsoft.com/office/officeappbasictypes/1.0"/>
         </bt:String>
+        <!-- <bt:String id="GetStarted.Description" DefaultValue="Your sample SAIC-OfficeAI loaded successfully.">
+          <Override Locale="zh-CN" Value="SAIC-OfficeAI已成功加载" xmlns="http://schemas.microsoft.com/office/officeappbasictypes/1.0"/>
+        </bt:String> -->
         <bt:String id="TABGC.ToolTip" DefaultValue="身份证">
           <Override Locale="zh-CN" Value="身份证" xmlns="http://schemas.microsoft.com/office/officeappbasictypes/1.0"/>
         </bt:String>
@@ -212,19 +193,8 @@
         <bt:String id="TABGC.menu2.ToolTip" DefaultValue="3">
           <Override Locale="zh-CN" Value="校验号码" xmlns="http://schemas.microsoft.com/office/officeappbasictypes/1.0"/>
         </bt:String>
-
-        
-				<bt:String id="TaskpaneButton.Tooltip" DefaultValue="Get files stored on OneDrive" />
-				<bt:String id="GetStarted.Description" DefaultValue="Choose Open Add-in, then Connect to Office 365 to get started." />
-				<bt:String id="BtnEnableAddinStart.Tooltip" DefaultValue="Add-in will load and start running as soon as document opens."/>
-				<bt:String id="BtnDisableAddinStart.Tooltip" DefaultValue="Add-in will have no load document load beahvior."/>
+      
 				<bt:String id="BtnConnectService.Tooltip" DefaultValue="Connect to backend data service"/>
-				<bt:String id="BtnDisConnectService.Tooltip" DefaultValue="Disconnect from backend data service"/>
-				<bt:String id="BtnInsertData.Tooltip" DefaultValue="Insert data from backend data service"/>
-				<bt:String id="BtnOpenTaskpane.Tooltip" DefaultValue="Open the task pane"/>
-				<bt:String id="BtnCloseTaskpane.Tooltip" DefaultValue="Close the task pane"/>
-				<bt:String id="BtnSyncData.Tooltip" DefaultValue="Sync changes to source data"/>
-				<bt:String id="BtnSumData.Tooltip" DefaultValue="Sum selected data"/>
       </bt:LongStrings>
     </Resources>
   </VersionOverrides>

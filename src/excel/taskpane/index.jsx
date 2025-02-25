@@ -12,22 +12,19 @@ const App = () => {
   const { openDialog, closeDialog, dialog } = useDialog(); // Use the dialog hook
   const [message, setMessage] = useState("");
   const [AIResult, setAIResult] = useState("");
-  const [userVerify, setUserVerify] = useState(null);
   const [messages, setMessages] = useState([
-    { "role": "system", "content": `你是一名Excel数据分析师，我会为你提供完整的excel内容，需要根据我的要求返回结果`, text: "你是一名Excel数据分析师" },
+    { "role": "system", "content": `你是一名Excel数据分析师，我会为你提供二维数组excel表格内容，需要根据我的需求返回结果、公式或代码`, text: "你是一名Excel数据分析师" },
   ]);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    try {
-      if (userVerify === 1) {
-        writeSelectedRange(AIResult)
-        setAIResult("")
-      } else if (userVerify === 0) {
-        setAIResult("")
-      }
-    } catch { }
-  }, [userVerify])
+  const isWrite = (val) => {
+    if (val === 1){
+      writeSelectedRange(AIResult)
+      setAIResult("")
+    }else if (val === 0) {
+      setAIResult("")
+    }
+  }
 
   const handleError = (errorText) => {
     setMessages(prevMessages => [
@@ -262,7 +259,6 @@ const App = () => {
   }
 
   function processMessage(arg) {
-    // closeDialog();
     if (dialog) {
       dialog.close();
     }
@@ -274,9 +270,9 @@ const App = () => {
   return (
     <div className="container_01">
       <Header />
-      <Dialogue messages={messages} AIResult={AIResult} loading={loading} setUserVerify={setUserVerify} />
+      <Dialogue messages={messages} AIResult={AIResult} loading={loading} isWrite={isWrite} />
       <InputBox message={message} setMessage={setMessage} sendMessage={sendMessageStream} loading={loading} />
-      <button onClick={test}>test</button>
+      {/* <button onClick={test}>test</button> */}
     </div>
   );
 };

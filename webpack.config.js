@@ -167,7 +167,6 @@ module.exports = async (env, options) => {
       // },
       // ],
       port: process.env.npm_package_config_dev_server_port || 3000,
-      // port: process.env.npm_package_config_dev_server_port || 3000,
       hot: true, // 启用 React 组件热重载
       historyApiFallback: true, // 让 React Router 兼容
     },

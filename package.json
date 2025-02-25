@@ -7,9 +7,22 @@
   },
   "license": "MIT",
   "config": {
-    "app_to_debug": "excel",
     "app_type_to_debug": "desktop",
-    "dev_server_port": 3000
+    "dev_server_port": 3000,
+    "dev_server": {
+      "port": 3000
+    },
+    "debug_apps": {
+      "excel": {
+        "manifest": "./src/manifest/manifest-excel.xml"
+      },
+      "word": {
+        "manifest": "./src/manifest/manifest-word.xml"
+      },
+      "ppt": {
+        "manifest": "./src/manifest/manifest-ppt.xml"
+      }
+    }
   },
   "scripts": {
     "build": "webpack --mode production",
