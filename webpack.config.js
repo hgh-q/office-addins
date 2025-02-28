@@ -5,7 +5,7 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 const urlDev = "https://localhost:3000/";
-const urlProd = "https://www.contoso.com/"; // CHANGE THIS TO YOUR PRODUCTION DEPLOYMENT LOCATION
+const urlProd = "https://1c5a963e.r29.cpolar.top/"; // CHANGE THIS TO YOUR PRODUCTION DEPLOYMENT LOCATION
 
 async function getHttpsOptions() {
   const httpsOptions = await devCerts.getHttpsServerOptions();
@@ -22,7 +22,7 @@ module.exports = async (env, options) => {
       excel: ['./src/excel/main.js'],
       word: ['./src/word/main.js'],
       ppt: ['./src/ppt/main.js'],
-      popup: "./src/dialogs/main.js"
+      popup: "./src/components/dialogs/main.js"
     },
     output: {
       // 输出目录，构建后的文件将存放在 /build 下
@@ -121,7 +121,7 @@ module.exports = async (env, options) => {
       }), 
       new HtmlWebpackPlugin({
         filename: "popup.html",
-        template: "./src/dialogs/popup.html",
+        template: "./src/components/dialogs/popup.html",
         chunks: ["polyfill", "popup"]
       }),
       new HtmlWebpackPlugin({

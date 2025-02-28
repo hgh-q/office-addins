@@ -1,7 +1,7 @@
 import React from "react";
 import "core-js"
 import ReactDOM from "react-dom/client";
-import Taskpane from "./taskpane/index";
+import Index from ".//index";
 
 Office.onReady((info) => {
   // if (info.host === Office.HostType.Excel) {
@@ -10,5 +10,5 @@ Office.onReady((info) => {
   // }
   const rootEle = document.getElementById("root")
   const root = ReactDOM.createRoot(rootEle);
-  root.render(<Taskpane />);
+  root.render(<Index />);
 });
